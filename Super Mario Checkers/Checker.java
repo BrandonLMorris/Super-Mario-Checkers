@@ -14,14 +14,10 @@ public class Checker extends Actor
      */
 
     //Class variable used to denote which team the checker is on
-    private int team;
-    GreenfootImage team1 = new GreenfootImage("button-green.png");
-    GreenfootImage team2 = new GreenfootImage("button-red.png");
+    public int team;
 
     public Checker(int team){
         this.team = team;
-        if(team == 1) setImage(team1);
-        if(team == 2) setImage(team2);
     }
 
     public void act() 
@@ -43,9 +39,5 @@ public class Checker extends Actor
                 getWorld().removeObject(this);
             }
         }
-    }
-    
-    public int getTeam() {
-        return team;
     }
 }
