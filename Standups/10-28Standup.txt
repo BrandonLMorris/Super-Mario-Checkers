@@ -1,0 +1,5 @@
+Stand Up 10/28
+
+Need to plan Sprint 1
+
+Decided what features would be included in Product Alpha. Namely, the initialization of the world with checkers and tunnels and the restriction of checkers moving diagonally. These stories were assigned to the group members and the scrum board was updated accordingly. Procedures for accomplishing stories and upload changes were discussed.

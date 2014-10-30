@@ -1,0 +1,20 @@
+Stand Up 10/30
+**Matt was not present
+
+Brandon:
+Uploaded the base project to the Canvas group
+Completed C7 (Checker’s movement)
+Completed B1 (Bombs eliminating checkers)
+Will create Github repository for the project for back-up and merging
+Still needs to create checker jumping code
+
+Hannah:
+Completed W2
+Completed W3
+**Blocker: Need suitable image for the tunnels
+
+Lesli:
+Complete W1
+
+Matt:
+To work on W7

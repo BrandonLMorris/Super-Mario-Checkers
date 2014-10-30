@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=team
+comment0.target=Checker(int)
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=int\ getTeam()
+numComments=3

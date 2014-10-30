@@ -1,0 +1,11 @@
+Stand Up Meeting 10/21
+
+Created further details for game
+	Tunnels at both ends of board to move and king checkers that land on it
+	Kinged Checker will be subclass of checker that can move any direction
+	Bombs and Mushrooms will be added to board after random number of turns that will remove and king checkers, respectively
+
+Created product backlog
+
+To Do:
+Prioritize Stories

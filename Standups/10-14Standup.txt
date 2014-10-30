@@ -1,0 +1,21 @@
+Stand Up Meeting 10/14
+*Matt was not present
+
+We Need:
+	Concept
+	Team (Roles)
+	Backlog
+	Burn down chart
+
+Ideas:
+	Duck eating flowers
+	Checkers
+
+Roles Decided:
+	Product Owner: Brandon
+	Scrum Master:  Lesli 
+	Developer: Hannah, Matt
+
+Discussed features:
+	Color(Actor) change when a piece is kinged
+	Keeping up with score
