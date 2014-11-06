@@ -1,4 +1,7 @@
 #Greenfoot project file
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=devBrandon
 class.Bomb.image=bomb.png
 class.Bomb.superclass=greenfoot.Actor
 class.Checker.image=button-green.png
@@ -21,13 +24,8 @@ dependency4.to=Tunnel
 dependency4.type=UsesDependency
 mainWindow.height=598
 mainWindow.width=738
-<<<<<<< HEAD
-mainWindow.x=186
-mainWindow.y=279
-=======
 mainWindow.x=1078
 mainWindow.y=217
->>>>>>> devBrandon
 package.numDependencies=4
 package.numTargets=4
 project.charset=UTF-8
