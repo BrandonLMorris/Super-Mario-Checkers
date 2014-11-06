@@ -1,9 +1,12 @@
 #BlueJ class context
 comment0.params=
 comment0.target=CheckerBoard()
-comment0.text=\n\ Constructor\ for\ objects\ of\ class\ CheckerBoard.\n\ \n
 comment1.params=
 comment1.target=void\ addCheckers()
 comment2.params=
-comment2.target=void\ addTunnel()
-numComments=3
+comment2.target=void\ addTunnels()
+comment3.params=
+comment3.target=boolean\ isPlayer1Turn()
+comment4.params=
+comment4.target=void\ nextPlayersTurn()
+numComments=5

@@ -13,13 +13,21 @@ public class CheckerBoard extends World
      * Constructor for objects of class CheckerBoard.
      * 
      */
+    
+    //used to keep up with which turn it is
+    private boolean isPlayer1Turn;
+    
+    //Constructs the board
     public CheckerBoard()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(9, 9, 50, true); 
         addCheckers();
-        addTunnel();
+        addTunnels();
+        isPlayer1Turn = true;
     }
+    
+    //Helper methods
     private void addCheckers(){
         addObject(new Checker(1), 0,1);
         addObject(new Checker(1), 2,1);
@@ -32,7 +40,8 @@ public class CheckerBoard extends World
         addObject(new Checker(2), 6,7);
         addObject(new Checker(2), 8,7);
     }
-    private void addTunnel(){
+    
+    private void addTunnels(){
         addObject(new Tunnel(), 0,0);
         addObject(new Tunnel(), 1,0);
         addObject(new Tunnel(), 2,0);
@@ -51,5 +60,13 @@ public class CheckerBoard extends World
         addObject(new Tunnel(), 6,8);
         addObject(new Tunnel(), 7,8);
         addObject(new Tunnel(), 8,8);
+    }
+    
+    //setter and getter for turn variable
+    public boolean isPlayer1Turn() {
+        return isPlayer1Turn;
+    }
+    public void nextPlayersTurn() {
+        isPlayer1Turn = !isPlayer1Turn;
     }
 }
