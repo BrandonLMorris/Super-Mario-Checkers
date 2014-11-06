@@ -1,0 +1,16 @@
+Stand Up 11/6
+
+Brandon:
+Finished C2 Story, allowing checkers to be moved to legal positions
+and preventing them from being moved to illegal positions
+
+Matt:
+Worked with Brandon to complete W7 story, adding turn field to 
+world class
+
+Hannah and Lesli already completed their stories
+
+A small demo to see what what accomplished for the Alpha release
+Looked at the Scrumboard to check project progress, on track
+
+Brandon will save progress and upload everything to Canvas
