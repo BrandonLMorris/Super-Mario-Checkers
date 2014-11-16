@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class GreenChecker here.
@@ -38,7 +39,11 @@ public class Checker extends Actor
         
         //gets performed when the user drops the checker on the board
         if(Greenfoot.mouseDragEnded(this)){
-            if(!isValidSpot(startX, startY, getX(), getY())){
+            if(isValidSpot(startX, startY, getX(), getY())){
+                //Eat players jumped over
+                jumpCheckers();
+                //next turn
+            } else {
                 setLocation(startX, startY);
             }
             Bomb b = (Bomb)getOneIntersectingObject(Bomb.class);
@@ -55,9 +60,79 @@ public class Checker extends Actor
         for(int i = 0; i < 9; i++) {
             if(((xMoved == xStart + i) || (xMoved == xStart - i)) &&
                ((yMoved == yStart + i) || (yMoved == yStart - i))) {
-                   return true;
+                   //Check that no other checkers are on that space
+                   List<Checker> cList = getWorld().getObjectsAt(xMoved, yMoved, Checker.class);
+                   if(cList.size() == 1) {
+                       return true;
+                   }
                 }
         }
         return false;
+    }
+    
+    //returns the direction of that the checker moved
+    // 1 -> Northeast
+    // 2 -> Northwest
+    // 3 -> Southwest
+    // 4 -> Southeast
+    private int getDirection() {
+        if(startY > getY()) {   //true if checker moved up the board
+            if(startX < getX()) {   //true if checker moved right
+                return 1;
+            } else {
+                return 2;
+            }
+        } else {
+            if(startX > getX()) {
+                return 3;
+            } else {
+                return 4;
+            }
+        }
+    }
+    
+    private void jumpCheckers() {
+        int direction = getDirection();
+        if (direction == 1) {
+            int xDist = getX() - startX;
+            for(int i = 1; i < xDist; i++) {
+                List<Checker> cList = getWorld().getObjectsAt(startX+i, startY-i, Checker.class);
+                for( Checker c : cList){
+                    if(c != null && c.team != this.team) {
+                        getWorld().removeObject(c);
+                    }
+                }
+            }
+        } else if(direction == 2) {
+            int xDist = startX - getX();
+            for(int i = 1; i < xDist; i++) {
+                List<Checker> cList = getWorld().getObjectsAt(startX-i, startY-i, Checker.class);
+                for(Checker c : cList){    
+                    if(c != null && c.team != this.team) {
+                        getWorld().removeObject(c);
+                    }
+                }
+            }
+        } else if(direction == 3) {
+            int xDist = startX - getX();
+            for(int i = 1; i < xDist; i++) {
+                List<Checker> cList = getWorld().getObjectsAt(startX-i, startY+i, Checker.class);
+                for(Checker c : cList) {
+                    if(c != null && c.team != this.team) {
+                        getWorld().removeObject(c);
+                    }
+                }
+            }
+        } else if(direction == 4) {
+            int xDist = getX() - startX;
+            for(int i = 1; i < xDist; i++) {
+                List<Checker> cList = getWorld().getObjectsAt(startX+i, startY+i, Checker.class);
+                for(Checker c : cList) {    
+                    if(c != null && c.team != this.team) {
+                        getWorld().removeObject(c);
+                    }
+                }
+            }
+        }
     }
 }
