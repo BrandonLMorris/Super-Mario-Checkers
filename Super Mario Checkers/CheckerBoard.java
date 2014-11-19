@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class CheckerBoard here.
@@ -8,15 +9,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class CheckerBoard extends World
 {
-
     /**
      * Constructor for objects of class CheckerBoard.
      * 
      */
-    
+
+
     //used to keep up with which turn it is
-    private boolean isPlayer1Turn;
-    
+    public int playerTurn;
+
     //Constructs the board
     public CheckerBoard()
     {    
@@ -24,9 +25,9 @@ public class CheckerBoard extends World
         super(9, 9, 50, true); 
         addCheckers();
         addTunnels();
-        isPlayer1Turn = true;
+        playerTurn = 1;
     }
-    
+
     //Helper methods
     private void addCheckers(){
         addObject(new Checker(1), 0,1);
@@ -40,7 +41,7 @@ public class CheckerBoard extends World
         addObject(new Checker(2), 6,7);
         addObject(new Checker(2), 8,7);
     }
-    
+
     private void addTunnels(){
         addObject(new Tunnel(), 0,0);
         addObject(new Tunnel(), 1,0);
@@ -61,12 +62,51 @@ public class CheckerBoard extends World
         addObject(new Tunnel(), 7,8);
         addObject(new Tunnel(), 8,8);
     }
-    
+
     //setter and getter for turn variable
-    public boolean isPlayer1Turn() {
-        return isPlayer1Turn;
+    public int playerTurn() {
+        return playerTurn;
     }
+
     public void nextPlayersTurn() {
-        isPlayer1Turn = !isPlayer1Turn;
+        playerTurn = (playerTurn == 1) ? 2 : 1;
+
+        //Adds Mushroom after random number of turns to random location
+        if (Greenfoot.getRandomNumber(100) < 10) {
+            //x and y to add object to
+            int randX = Greenfoot.getRandomNumber(9);
+            int randY = Greenfoot.getRandomNumber(9)-1;
+            //check that no other object is at x y, if there is generate new x and y
+            //also checks that x y is a moveable space (odd numbers)
+            List<Object> objs = getObjectsAt(randX, randY, Object.class);
+            while((objs.size() != 0) || (randX % 2 != 0) || (randY % 2 != 0)) {
+                randX = Greenfoot.getRandomNumber(9);
+                randY = Greenfoot.getRandomNumber(9);
+                objs = getObjectsAt(randX, randY, Object.class);
+            }
+            
+            addObject (new Mushroom(), randX, randY);
+        }
+
+        //Adds Bomb after random number of turns to random location
+        if (Greenfoot.getRandomNumber(100) < 10) {
+            //x and y to add new object to
+            int randX = Greenfoot.getRandomNumber(9);
+            int randY = Greenfoot.getRandomNumber(8)+1;
+            //check that no other object is at x y, if there is generate new x and y
+            List<Object> objs = getObjectsAt(randX, randY, Object.class);
+            while(objs.size() != 0) {
+                randX = Greenfoot.getRandomNumber(9 );
+                randY = Greenfoot.getRandomNumber(8)+1;
+                objs = getObjectsAt(randX, randY, Object.class);
+            }
+           
+            addObject (new Bomb(), randX, randY);
+        }
     }
+
+    public World getWorld() {
+        return this;
+    }
+
 }

@@ -14,13 +14,17 @@ public class Checker extends Actor
     public int team;
     private int startX;
     private int startY;
+    CheckerBoard cb = (CheckerBoard) getWorld();
+    
+    
+    
 
     public Checker(int team){
         this.team = team;
         if(team == 1) {
-            setImage(new GreenfootImage("button-red.png"));
+            setImage(new GreenfootImage("Mario.png"));
         } else if (team == 2) {
-            setImage(new GreenfootImage("button-green.png"));
+            setImage(new GreenfootImage("Wario.png"));
         }
     }
 
@@ -39,18 +43,29 @@ public class Checker extends Actor
         
         //gets performed when the user drops the checker on the board
         if(Greenfoot.mouseDragEnded(this)){
-            if(isValidSpot(startX, startY, getX(), getY())){
+            if(isValidSpot(startX, startY, getX(), getY()) && ((CheckerBoard)getWorld()).playerTurn() == this.team){
                 //Eat players jumped over
                 jumpCheckers();
-                //next turn
+                ((CheckerBoard)getWorld()).nextPlayersTurn();
+
             } else {
                 setLocation(startX, startY);
             }
+            
+            //Checks if player landed on a mushroom. Kings checker if true
+            Mushroom m = (Mushroom)getOneObjectAtOffset(0, 0, Mushroom.class);
+            if(m != null) {
+                m.makeKing(this);
+            }
+            
+            //Check if player landed on a bomb. Kings checker if true
             Bomb b = (Bomb)getOneIntersectingObject(Bomb.class);
             if(b != null) {
                 getWorld().removeObject(b);
                 getWorld().removeObject(this);
             }
+            
+            
         }
     }
     
@@ -100,6 +115,7 @@ public class Checker extends Actor
                 for( Checker c : cList){
                     if(c != null && c.team != this.team) {
                         getWorld().removeObject(c);
+                        Greenfoot.playSound("slurp.wav");
                     }
                 }
             }
@@ -110,6 +126,7 @@ public class Checker extends Actor
                 for(Checker c : cList){    
                     if(c != null && c.team != this.team) {
                         getWorld().removeObject(c);
+                        Greenfoot.playSound("slurp.wav");
                     }
                 }
             }
@@ -120,6 +137,7 @@ public class Checker extends Actor
                 for(Checker c : cList) {
                     if(c != null && c.team != this.team) {
                         getWorld().removeObject(c);
+                        Greenfoot.playSound("slurp.wav");
                     }
                 }
             }
@@ -129,7 +147,8 @@ public class Checker extends Actor
                 List<Checker> cList = getWorld().getObjectsAt(startX+i, startY+i, Checker.class);
                 for(Checker c : cList) {    
                     if(c != null && c.team != this.team) {
-                        getWorld().removeObject(c);
+                        getWorld().removeObject(c);                        
+                        Greenfoot.playSound("slurp.wav");
                     }
                 }
             }
