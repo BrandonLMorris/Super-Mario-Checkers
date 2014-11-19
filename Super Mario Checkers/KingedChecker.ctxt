@@ -2,6 +2,6 @@
 comment0.params=team
 comment0.target=KingedChecker(int)
 comment0.text=\n\ Act\ -\ do\ whatever\ the\ KingedChecker\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
-comment1.params=
-comment1.target=void\ act()
+comment1.params=xStrart\ yStart\ xMoved\ yMoved
+comment1.target=boolean\ isValidSpot(int,\ int,\ int,\ int)
 numComments=2

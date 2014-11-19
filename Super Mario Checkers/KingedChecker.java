@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class KingedChecker here.
@@ -21,8 +22,16 @@ public class KingedChecker extends Checker
         }
     }
     
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+//     public void act() 
+//     {
+//     //Add your action code here.
+//     }
+
+    @Override
+    protected boolean isValidSpot(int xStrart, int yStart, int xMoved, int yMoved) {
+        List<Checker> cList = getWorld().getObjectsAt(xMoved, yMoved, Checker.class);
+        if(cList.size() == 1) {
+            return true;
+        } else return false;
+    }
 }

@@ -9,6 +9,4 @@ comment3.params=
 comment3.target=int\ playerTurn()
 comment4.params=
 comment4.target=void\ nextPlayersTurn()
-comment5.params=
-comment5.target=greenfoot.World\ getWorld()
-numComments=6
+numComments=5

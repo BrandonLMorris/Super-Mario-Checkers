@@ -70,6 +70,22 @@ public class CheckerBoard extends World
 
     public void nextPlayersTurn() {
         playerTurn = (playerTurn == 1) ? 2 : 1;
+        int checkerCount1 = 0;
+        int checkerCount2 = 0;
+        
+        //Count all checker on the board by team, if either is zero the game is over
+        List<Checker> cList = getObjects(Checker.class);
+        for(Checker c : cList) {
+            if(c.team == 1){
+                checkerCount1++;
+            } else if(c.team == 2) {
+                checkerCount2++;
+            }
+        }
+        if(checkerCount1 == 0 || checkerCount2 == 0) {
+            Greenfoot.playSound("game-complete.wav");
+            Greenfoot.stop();
+        }
 
         //Adds Mushroom after random number of turns to random location
         if (Greenfoot.getRandomNumber(100) < 10) {
@@ -79,7 +95,7 @@ public class CheckerBoard extends World
             //check that no other object is at x y, if there is generate new x and y
             //also checks that x y is a moveable space (odd numbers)
             List<Object> objs = getObjectsAt(randX, randY, Object.class);
-            while((objs.size() != 0) || (randX % 2 != 0) || (randY % 2 != 0)) {
+            while((objs.size() != 0) || (randX % 2 != 0) || (randY % 2 == 0)) {
                 randX = Greenfoot.getRandomNumber(9);
                 randY = Greenfoot.getRandomNumber(9);
                 objs = getObjectsAt(randX, randY, Object.class);
@@ -95,7 +111,7 @@ public class CheckerBoard extends World
             int randY = Greenfoot.getRandomNumber(8)+1;
             //check that no other object is at x y, if there is generate new x and y
             List<Object> objs = getObjectsAt(randX, randY, Object.class);
-            while(objs.size() != 0) {
+            while(objs.size() != 0 || (randX % 2 != 0) || (randY % 2 == 0)) {
                 randX = Greenfoot.getRandomNumber(9 );
                 randY = Greenfoot.getRandomNumber(8)+1;
                 objs = getObjectsAt(randX, randY, Object.class);
@@ -104,9 +120,4 @@ public class CheckerBoard extends World
             addObject (new Bomb(), randX, randY);
         }
     }
-
-    public World getWorld() {
-        return this;
-    }
-
 }

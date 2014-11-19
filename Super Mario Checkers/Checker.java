@@ -15,10 +15,8 @@ public class Checker extends Actor
     private int startX;
     private int startY;
     CheckerBoard cb = (CheckerBoard) getWorld();
-    
-    
-    
 
+    
     public Checker(int team){
         this.team = team;
         if(team == 1) {
@@ -40,7 +38,7 @@ public class Checker extends Actor
             MouseInfo mouse = Greenfoot.getMouseInfo();
             setLocation(mouse.getX(), mouse.getY());
         }
-        
+
         //gets performed when the user drops the checker on the board
         if(Greenfoot.mouseDragEnded(this)){
             if(isValidSpot(startX, startY, getX(), getY()) && ((CheckerBoard)getWorld()).playerTurn() == this.team){
@@ -51,40 +49,36 @@ public class Checker extends Actor
             } else {
                 setLocation(startX, startY);
             }
-            
-            //Checks if player landed on a mushroom. Kings checker if true
-            Mushroom m = (Mushroom)getOneObjectAtOffset(0, 0, Mushroom.class);
-            if(m != null) {
-                m.makeKing(this);
+
+            List<Object> objects = getIntersectingObjects(Object.class); 
+            for(Object o : objects) {
+                if(o instanceof Bomb) {
+                    getWorld().removeObject((Actor)o);
+                    getWorld().removeObject(this);
+                } else if(o instanceof Mushroom) {
+                    o = (Mushroom)o;
+                    ((Mushroom)o).makeKing(this);
+                }
             }
-            
-            //Check if player landed on a bomb. Kings checker if true
-            Bomb b = (Bomb)getOneIntersectingObject(Bomb.class);
-            if(b != null) {
-                getWorld().removeObject(b);
-                getWorld().removeObject(this);
-            }
-            
-            
         }
     }
-    
+
     //Helper method that checks the validity of a position relative to the checker's start position
-    private boolean isValidSpot(int xStart, int yStart, int xMoved, int yMoved) {
+    protected boolean isValidSpot(int xStart, int yStart, int xMoved, int yMoved) {
         //iterated through all possible x and y positions for diagonal movement, returns true if
         for(int i = 0; i < 9; i++) {
             if(((xMoved == xStart + i) || (xMoved == xStart - i)) &&
-               ((yMoved == yStart + i) || (yMoved == yStart - i))) {
-                   //Check that no other checkers are on that space
-                   List<Checker> cList = getWorld().getObjectsAt(xMoved, yMoved, Checker.class);
-                   if(cList.size() == 1) {
-                       return true;
-                   }
+            ((yMoved == yStart + i) || (yMoved == yStart - i))) {
+                //Check that no other checkers are on that space
+                List<Checker> cList = getWorld().getObjectsAt(xMoved, yMoved, Checker.class);
+                if(cList.size() == 1) {
+                    return true;
                 }
+            }
         }
         return false;
     }
-    
+
     //returns the direction of that the checker moved
     // 1 -> Northeast
     // 2 -> Northwest
@@ -105,7 +99,7 @@ public class Checker extends Actor
             }
         }
     }
-    
+
     private void jumpCheckers() {
         int direction = getDirection();
         if (direction == 1) {
@@ -115,7 +109,7 @@ public class Checker extends Actor
                 for( Checker c : cList){
                     if(c != null && c.team != this.team) {
                         getWorld().removeObject(c);
-                        Greenfoot.playSound("slurp.wav");
+                        Greenfoot.playSound("coin-jump.wav");
                     }
                 }
             }
@@ -126,7 +120,7 @@ public class Checker extends Actor
                 for(Checker c : cList){    
                     if(c != null && c.team != this.team) {
                         getWorld().removeObject(c);
-                        Greenfoot.playSound("slurp.wav");
+                        Greenfoot.playSound("coin-jump.wav");
                     }
                 }
             }
@@ -137,7 +131,7 @@ public class Checker extends Actor
                 for(Checker c : cList) {
                     if(c != null && c.team != this.team) {
                         getWorld().removeObject(c);
-                        Greenfoot.playSound("slurp.wav");
+                        Greenfoot.playSound("coin-jump.wav");
                     }
                 }
             }
@@ -148,7 +142,7 @@ public class Checker extends Actor
                 for(Checker c : cList) {    
                     if(c != null && c.team != this.team) {
                         getWorld().removeObject(c);                        
-                        Greenfoot.playSound("slurp.wav");
+                        Greenfoot.playSound("coin-jump.wav");
                     }
                 }
             }
