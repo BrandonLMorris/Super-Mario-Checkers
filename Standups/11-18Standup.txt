@@ -1,0 +1,13 @@
+Stand Up 11/18
+
+Brandon
+Added mushroom and turn by turn, needs to fix some bugs and add kinged player logic
+
+Matt
+Added new pictures to game
+
+Lesli
+Added random mushroom and bomb behavior
+
+Hannah
+Added sound effect, need new file to be played

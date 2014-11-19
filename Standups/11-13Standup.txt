@@ -1,0 +1,10 @@
+Standup 11/13
+
+Brandon
+Worked on pieces jumping each other
+Still needs to add mushrooms and turn-by-turn gameplay
+
+Matt
+Found new pictures for the checkers, will be incorporated into the game
+
+Hannah and Lesli have not started their stories
