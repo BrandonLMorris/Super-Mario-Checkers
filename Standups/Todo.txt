@@ -1,0 +1,11 @@
+TODO:
+
+Make kinged checker able to jump from any direction **Fix up and down
+**COMPLETE**Make kinged checker only able to move one direction
+
+Tunnel stuff
+	Moves players through
+	Kings them
+	Makes a sound
+
+**COMPLETE**End game when all of one teams pieces removed

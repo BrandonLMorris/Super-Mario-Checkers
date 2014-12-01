@@ -26,6 +26,7 @@ public class CheckerBoard extends World
         addCheckers();
         addTunnels();
         playerTurn = 1;
+        setPaintOrder(Checker.class, Tunnel.class);
     }
 
     //Helper methods

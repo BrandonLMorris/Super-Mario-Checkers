@@ -12,8 +12,8 @@ public class Checker extends Actor
 
     //Class variable used to denote which team the checker is on
     public int team;
-    private int startX;
-    private int startY;
+    protected int startX;
+    protected int startY;
     CheckerBoard cb = (CheckerBoard) getWorld();
 
     
@@ -55,9 +55,16 @@ public class Checker extends Actor
                 if(o instanceof Bomb) {
                     getWorld().removeObject((Actor)o);
                     getWorld().removeObject(this);
+                    break;
                 } else if(o instanceof Mushroom) {
                     o = (Mushroom)o;
                     ((Mushroom)o).makeKing(this);
+                    break;
+                } else if(o instanceof Tunnel) {
+                    o = (Tunnel)o;
+                    ((Tunnel)o).transport(this);
+                    ((Tunnel)o).makeKing(this);
+                    break;
                 }
             }
         }
@@ -100,7 +107,7 @@ public class Checker extends Actor
         }
     }
 
-    private void jumpCheckers() {
+    protected void jumpCheckers() {
         int direction = getDirection();
         if (direction == 1) {
             int xDist = getX() - startX;
